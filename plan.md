@@ -1,9 +1,7 @@
 # Miasto
 
-- startuje z jednym kontraktem do innego miasta, stolica ma 2
-- kontrakt moze byc zmieniony na inne miasta przy zakonczonej transakcji produkowanego surowca z szansa 1%
-- 0.1% szansy na spwan misji wyslij list kontraktowy (misja ta bd tworzyla nowy kontrakt miedzy miastami) i szansa bd sie zwiekszala
-  az do 5% przy kazdej sprzedazy surowca z innego miasta
+- startuje z szansa 20% na jednen kontrakt do innego miasta, stolica ma 1-3
+- szansa na kontrakt miedzy miastami wynosi 1% chyba ze miasto ma fabryke wyczerpanego surowca w innym miescie, wtedy szansa wynosi 20%
 - szansa na fabryke to 40% przy miescie (o ile lokacja pozwala), 'big' miasto bd mialo gwarantowana fabryke i 20% szansy na 2
 
 ## Struktura miasta
@@ -28,7 +26,8 @@ json = {
         "mission_title": ["Agata mysli nad tym prawda?", "Oby Adam sie nie mylil"],
         "connecitons": [
           "Romania", "Kraina Czapl", ...,
-          ]
+          ],
+        "contracts": ["Romania"]
          },
          ]
 }
