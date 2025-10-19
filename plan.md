@@ -9,17 +9,18 @@
 `python 
 json = {
   cities: [
-    "Eldorado": {
+    {
+        "name": "Eldorado"
         "size": "big",  
         "factory": ["mine", "20%for other if big"],
         "fee": 100
         "number of connections": "6",
         "commodieties": {
-          "metal": {"quantity": 100, "price": 200, "regular price": 150},
-          "gems": {"quantity": 75, "price": 250, "regular price": 300},
-          "food": {"quantity": 50, "price": 50, "regular price": 45},
-          "fuel": {"quantity": 50, "price": 100, "regular price": 80},
-          "relics": {"quantity": 1, "price": 1250, "regular price": 1300},
+          "metal": {"quantity": 100, "price": 200, "regular price": 150, "regular_quantity": 100},
+          "gems": {"quantity": 75, "price": 250, "regular price": 300, "regular_quantity": 100},
+          "food": {"quantity": 50, "price": 50, "regular price": 45, "regular_quantity": 100},
+          "fuel": {"quantity": 50, "price": 100, "regular price": 80, "regular_quantity": 100},
+          "relics": {"quantity": 1, "price": 1250, "regular price": 1300, "regular_quantity": 100},
           "special": null,
          },
         "missions": 2,
