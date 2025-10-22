@@ -1,6 +1,7 @@
 """City class to conviniently store city data."""
 
-from dataclasses import dataclass, fields
+from dataclasses import asdict, dataclass, fields
+from typing import Any
 
 from .compare import commodieties_diff
 
@@ -26,7 +27,7 @@ class City:
 
     name: str
     size: str
-    factory: list[str]
+    factories: list[str]
     fee: float
     nr_of_conn: int
     commodities: dict[str, dict]
@@ -53,23 +54,10 @@ class City:
         """Fields of class."""
         return [field.name for field in fields(cls)]
 
-    # def __init__(self,
-    #              name: str,
-    #              size: str,
-    #              factory: list[str],
-    #              fee: float,
-    #              nr_of_conn: int,
-    #              commodieties: dict[str, dict],
-    #              missions: int,
-    #              mission_title: list[str],
-    #              connections: list[str]
-    #              ) -> None:
-    #     self.name = name
-    #     self.size = size
-    #     self.factory = factory
-    #     self.fee = fee
-    #     self.nr_of_conn = nr_of_conn
-    #     self.commoditeties = commodieties
-    #     self.missions = missions
-    #     self.mission_title = mission_title
-    #     self.connections = connections
+    def to_dict(self) -> dict[str, Any]:
+        """Changes this object into dict.
+
+        Returns:
+            dict(str, Any): dict with same fields as this class.
+        """
+        return asdict(self)
