@@ -126,7 +126,7 @@ class CityProcessor:
         if abs(quantity) / reg_quant < 0.5:
             return
 
-        factories: dict[str, str] = {
+        factory: dict[str, str] = {
             "metal": "",
             "gems": "",
             "food": "",
@@ -136,7 +136,7 @@ class CityProcessor:
         # leaving up to chance posibility of changing standard
         # quality to limit player influence
         if quantity < 0:
-            if factories[item_type] not in self.cities[name].factories:
+            if factory[item_type] not in self.cities[name].factory:
                 low, high = 0.5, 0.75
             else:
                 low, high = 0.95, 1

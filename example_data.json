@@ -3,7 +3,7 @@
     {
       "name": "Eldorado",
       "size": "big",
-      "factories": [
+      "factory": [
         "mine",
         "farm"
       ],
@@ -51,7 +51,7 @@
     {
       "name": "Rivermond",
       "size": "medium",
-      "factories": [
+      "factory": [
         "shipyard"
       ],
       "fee": 90,
@@ -100,7 +100,7 @@
     {
       "name": "Eldorado",
       "size": "big",
-      "factories": [
+      "factory": [
         "mine",
         "farm"
       ],
@@ -148,7 +148,7 @@
     {
       "name": "Rivermond",
       "size": "medium",
-      "factories": [
+      "factory": [
         "shipyard"
       ],
       "fee": 90,

@@ -13,7 +13,7 @@ class City:
     Params:
         name (str): name of city.
         size (str): size of city.
-        factory (list[str]): lists of factories located in city.
+        factory (list[str]): lists of factory located in city.
         fee (float): fee for entering.
         nr_of_conn (int): number of city connected to this.
         commodieties (dict[str, dict]): dictionary containing
@@ -27,7 +27,7 @@ class City:
 
     name: str
     size: str
-    factories: list[str]
+    factory: list[str]
     fee: float
     nr_of_conn: int
     commodities: dict[str, dict]

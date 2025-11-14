@@ -1,11 +1,12 @@
 """Script for processig city data."""
 
+import os
 import sys
 
 import data_processor as p
 
 
-def main(path: str = "example_data.json"):
+def main(path: str | None = None):
     """Main script for city data processing.
 
     Args:
@@ -15,6 +16,7 @@ def main(path: str = "example_data.json"):
         None
     """
     # loader = p.JsonManager("data.json")
+    path = os.getenv('CITY_PATH', None)
     manager = p.JsonManager(path)
     processor = p.CityProcessor(manager)
 
