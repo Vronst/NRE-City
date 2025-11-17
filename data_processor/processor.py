@@ -7,6 +7,14 @@ from .city import City
 from .compare import commodieties_diff
 from .json_manager import JsonManager
 
+factory: dict[str, str] = {
+    "metal": "",
+    "gems": "",
+    "food": "",
+    "fuel": "",
+    "relics": "",
+}
+
 
 class CityProcessor:
     """Processes city data and players actions."""
@@ -126,13 +134,6 @@ class CityProcessor:
         if abs(quantity) / reg_quant < 0.5:
             return
 
-        factory: dict[str, str] = {
-            "metal": "",
-            "gems": "",
-            "food": "",
-            "fuel": "",
-            "relics": "",
-        }
         # leaving up to chance posibility of changing standard
         # quality to limit player influence
         if quantity < 0:
