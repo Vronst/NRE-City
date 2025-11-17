@@ -127,7 +127,9 @@ class CityProcessor:
         if quantity == 0:
             return
 
-        reg_quant = city_comm["regular_quantity"]
+        # to prevent deviding by zero
+        data = city_comm["regular_quantity"]
+        reg_quant = data if data > 0 else 1
 
         # changes should occur only when change
         # in quanityt is signifacant
@@ -149,7 +151,6 @@ class CityProcessor:
         )
 
         city_comm["quantity"] = city_comm["regular_quantity"]
-        # print(city_comm['quantity'], city_comm)
 
     def __process_price(self, city_comm, quantity):
         reg_price = city_comm["regular_price"]
