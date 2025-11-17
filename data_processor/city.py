@@ -30,7 +30,7 @@ class City:
     factory: list[str]
     fee: float
     nr_of_conn: int
-    commodities: dict[str, dict]
+    commodities: dict[str, dict | None]
     missions: int
     missions_titles: list[str]
     connections: list[str]

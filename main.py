@@ -16,7 +16,7 @@ def main(path: str | None = None):
         None
     """
     # loader = p.JsonManager("data.json")
-    path = os.getenv('CITY_PATH', None)
+    path = os.getenv("CITY_PATH", None)
     manager = p.JsonManager(path)
     processor = p.CityProcessor(manager)
 
