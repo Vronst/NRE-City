@@ -3,7 +3,7 @@
 import os
 import sys
 
-import data_processor as p
+import nrecity as p
 
 
 def main(path: str | None = None):
@@ -16,7 +16,7 @@ def main(path: str | None = None):
         None
     """
     # loader = p.JsonManager("data.json")
-    path = os.getenv("CITY_PATH", None)
+    path = os.getenv("CITY_PATH", "")
     manager = p.JsonManager(path)
     processor = p.CityProcessor(manager)
 
@@ -24,8 +24,14 @@ def main(path: str | None = None):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        path = sys.argv[1]
-        main(path)
-    else:
+    if "reset" not in sys.argv:
         main()
+    else:
+        import os
+
+        path = str(os.getenv("CITY_PATH"))
+        rules = str(os.getenv("CITY_RULES"))
+        json_manager = p.JsonManager(path)
+        rules_manager = p.JsonManager(rules)
+        manipulator = p.CommoditiesManipulator(json_manager, rules_manager)
+        manipulator.reset_cities(141)

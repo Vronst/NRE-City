@@ -1,8 +1,20 @@
 # noqa
+import json
+import os
+
 from data_processor.city import City
 
-city1 = City(
-    "city1",
+PATH = os.getenv("CITY_PATH", "")
+with open(PATH) as file:
+    data = json.load(file)
+
+fields = []
+for name, value in data["after"][0].items():
+    fields.append(name)
+
+
+City1 = City(
+    "City1",
     "big",
     ["mine", "port"],
     100,
@@ -42,11 +54,11 @@ city1 = City(
     },
     0,
     [],
-    ["city2"],
+    ["City2"],
 )
 
-city2 = City(
-    "city2",
+City2 = City(
+    "City2",
     "small",
     [],
     1,
@@ -86,13 +98,13 @@ city2 = City(
     },
     0,
     [],
-    ["city2"],
+    ["City2"],
 )
 
 
 class TestCity:  # noqa
     def test_compare(self):  # noqa
-        assert city1.compare(city2) == {
+        assert City1.compare(City2) == {
             "food": {
                 "price_diff": -54,
                 "quantity_diff": -135,
@@ -124,7 +136,7 @@ class TestCity:  # noqa
                 "reg_quantity": 100,
             },
         }
-        assert city1.compare(city1) == {
+        assert City1.compare(City1) == {
             "food": {
                 "price_diff": 0,
                 "quantity_diff": 0,
@@ -156,3 +168,7 @@ class TestCity:  # noqa
                 "reg_quantity": 100,
             },
         }
+
+    def test_fields(self):  # noqa
+        for name in fields:
+            City1.__getattribute__(name)

@@ -8,11 +8,11 @@ from .compare import commodieties_diff
 from .json_manager import JsonManager
 
 factory: dict[str, str] = {
-    "metal": "",
-    "gems": "",
-    "food": "",
-    "fuel": "",
-    "relics": "",
+    "metal": "Wysypisko",
+    "gems": "Jubiler",
+    "food": "McRoman",
+    "fuel": "Kosciol",
+    "relics": "Grobowiec",
 }
 
 

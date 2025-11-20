@@ -17,7 +17,7 @@ class JsonManager:
         """
         self(path)
 
-    def __call__(self, path: str | None = None) -> None:
+    def __call__(self, path: str | None = None) -> dict:
         """Load data with DataLoader.
 
         Uses path from initialization if not provided.
@@ -30,7 +30,7 @@ class JsonManager:
             None
         """
         self.path = path if path else self.path
-        self.__load()
+        return self.__load()
 
     def __load(self) -> dict:
         with open(self.path) as file:
