@@ -2,7 +2,7 @@
 import json
 import os
 
-from data_processor.city import City
+from nrecity.city import City
 
 PATH = os.getenv("CITY_PATH", "")
 with open(PATH) as file:

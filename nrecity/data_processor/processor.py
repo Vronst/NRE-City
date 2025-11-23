@@ -107,6 +107,7 @@ class CityProcessor:
             for item_type, data in commodieties.items():
                 quantity = data["quantity_diff"]
                 city_comm = self.cities[name].commodities[item_type]
+                assert isinstance(city_comm, dict)
 
                 # print(name, item_type)
                 self.__proces_quantity(city_comm, quantity, name, item_type)
