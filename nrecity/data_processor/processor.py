@@ -3,9 +3,9 @@
 import random
 from typing import Any
 
+from ..data_manager import JsonManager
 from .city import City
 from .compare import commodieties_diff
-from .json_manager import JsonManager
 
 factory: dict[str, str] = {
     "metal": "Wysypisko",
@@ -32,6 +32,12 @@ class CityProcessor:
         self.json_manager = json_manager
         # self.events = json_manager.events()
 
+    def __get_cities_after(self) -> list[dict]:
+        return self.json_manager.data["after"]
+
+    def __get_cities_before(self) -> list[dict]:
+        return self.json_manager.data["cities"]
+
     def get_dict_of_cities(self, state: str = "after") -> dict[str, City]:
         """Creates list of objects of City.
 
@@ -42,9 +48,9 @@ class CityProcessor:
             list[City]: list containing City objects.
         """
         requested: list = (
-            self.json_manager.cities_after
+            self.__get_cities_after()
             if state == "after"
-            else self.json_manager.cities_before
+            else self.__get_cities_before()
         )
         city_dict: dict[str, City] = {}
         for city in requested:
@@ -52,7 +58,6 @@ class CityProcessor:
             for field in City.fields():
                 new_city[field] = city[field]
             city_dict[city["name"]] = City(**new_city)
-            # city_list.append(City(**city))
 
         return city_dict
 
@@ -109,7 +114,6 @@ class CityProcessor:
                 city_comm = self.cities[name].commodities[item_type]
                 assert isinstance(city_comm, dict)
 
-                # print(name, item_type)
                 self.__proces_quantity(city_comm, quantity, name, item_type)
 
                 change: int = round(

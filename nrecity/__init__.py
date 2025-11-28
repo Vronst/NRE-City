@@ -1,7 +1,8 @@
 """Initialize the city module."""
 
+from .data_manager import DataManager, JsonManager
 from .data_manipulator import CommoditiesManipulator
-from .data_processor import City, CityProcessor, JsonManager, factory
+from .data_processor import City, CityProcessor, factory
 
 __all__ = [
     "CommoditiesManipulator",
@@ -9,4 +10,5 @@ __all__ = [
     "CityProcessor",
     "JsonManager",
     "factory",
+    "DataManager",
 ]

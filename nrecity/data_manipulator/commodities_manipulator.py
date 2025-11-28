@@ -1,8 +1,10 @@
 """Module for manipulating commodity data."""
 
 import random
+from typing import TYPE_CHECKING
 
-from ..data_processor import JsonManager, factory
+from ..data_manager import DataManager, JsonManager
+from ..data_processor import factory
 
 
 class CommoditiesManipulator:
@@ -14,25 +16,23 @@ class CommoditiesManipulator:
         "commodities": "commodities",
     }
 
-    def __init__(
-        self, json_manager: JsonManager, rules_manager: JsonManager
-    ) -> None:
+    def __init__(self, data_manager: DataManager) -> None:
         """Saves json_manager with its paths.
 
         Args:
-            json_manager (JsonManager): The JSON manager for commodity data.
-            rules_manager (JsonManager): The JSON manager for rules.
+            data_manager (DataManager): The data manager with JsonManager,
+                for commodity data and rules.
         """
-        self.json_manager = json_manager
-        self.rules = rules_manager()
+        self.cities_manager: JsonManager = data_manager.get_manager("cities")
+        self.rules: dict = data_manager.get_manager("rules")()
         self._load_data()
 
     def _load_data(self):
-        self.all_data = self.json_manager()
+        self.all_data = self.cities_manager()
         self.data = self.all_data["cities"]
 
     def _save_data(self):
-        self.json_manager.save(self.all_data)
+        self.cities_manager.save(self.all_data)
 
     def reset_cities(self, seed: int | None = None):
         """Sets (if no seed) random within rules data for cities.

@@ -15,9 +15,9 @@ def main(path: str | None = None):
     Returns:
         None
     """
-    # loader = p.JsonManager("data.json")
-    path = os.getenv("CITY_PATH", "")
-    manager = p.JsonManager(path)
+    path = os.getenv("DATA_PATH", "")
+    manager = p.JsonManager(path + "miasta.json", name="cities")
+    # data_manager = p.DataManager([manager])
     processor = p.CityProcessor(manager)
 
     processor.process_changes()
@@ -29,9 +29,9 @@ if __name__ == "__main__":
     else:
         import os
 
-        path = str(os.getenv("CITY_PATH"))
-        rules = str(os.getenv("CITY_RULES"))
-        json_manager = p.JsonManager(path)
-        rules_manager = p.JsonManager(rules)
-        manipulator = p.CommoditiesManipulator(json_manager, rules_manager)
+        path = str(os.getenv("DATA_PATH"))
+        json_manager = p.JsonManager(path + "miasta.json", "cities")
+        rules_manager = p.JsonManager(path + "city_rules.json", "rules")
+        data_manager = p.DataManager([json_manager, rules_manager])
+        manipulator = p.CommoditiesManipulator(data_manager)
         manipulator.reset_cities(141)

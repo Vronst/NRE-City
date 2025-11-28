@@ -4,7 +4,7 @@ import os
 
 from nrecity.city import City
 
-PATH = os.getenv("CITY_PATH", "")
+PATH = os.getenv("DATA_PATH", "")
 with open(PATH) as file:
     data = json.load(file)
 
