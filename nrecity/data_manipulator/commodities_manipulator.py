@@ -1,7 +1,6 @@
 """Module for manipulating commodity data."""
 
 import random
-from typing import TYPE_CHECKING
 
 from ..data_manager import DataManager, JsonManager
 from ..data_processor import factory
