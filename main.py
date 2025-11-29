@@ -24,12 +24,20 @@ def main(path: str | None = None):
 
 
 if __name__ == "__main__":
-    if "reset" not in sys.argv:
-        main()
-    else:
-        import os
+    import os
 
-        path = str(os.getenv("DATA_PATH"))
+    path = str(os.getenv("DATA_PATH"))
+
+    if len(sys.argv) == 1:
+        main()
+    elif "event" in sys.argv:
+        manager = p.DataManager()
+        manager.create_manager(path + "events.json")
+        manager.create_manager(path + "event_frequency.json")
+        manager.create_manager(path + "curr_event.json")
+        selector = p.EventSelector(manager)
+        print(selector.run())
+    else:
         json_manager = p.JsonManager(path + "miasta.json", "cities")
         rules_manager = p.JsonManager(path + "city_rules.json", "rules")
         data_manager = p.DataManager([json_manager, rules_manager])

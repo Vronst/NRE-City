@@ -12,11 +12,12 @@ class DataManager:
         json_managers (dict[JsonManager]): The json managers to manage.
     """
 
-    def __init__(self, json_managers: list[JsonManager]) -> None:
+    def __init__(self, json_managers: list[JsonManager] | None = None) -> None:
         """Init."""
         self.json_managers = {}
-        for manager in json_managers:
-            self.add_manager(manager)
+        if isinstance(json_managers, list):
+            for manager in json_managers:
+                self.add_manager(manager)
 
     def add_manager(self, manager: JsonManager):
         """Adds a new JsonManager to the list.
@@ -27,7 +28,7 @@ class DataManager:
         if manager.name:
             self.json_managers[manager.name] = manager
         else:
-            name = manager.path.split("/")[-1]
+            name = manager.path.split("/")[-1].split(".")[0]
             self.json_managers[name] = manager
 
     def get_manager(

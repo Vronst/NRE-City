@@ -61,9 +61,10 @@ class JsonManager:
     @property
     def data(self) -> dict:
         """Returns data from json file."""
+        if not self.__data:
+            self.__load()
         return self.__data
 
     @data.setter
     def data(self, value: dict) -> None:
-        # FIXME: not sure what i want xd
         self.__data = value

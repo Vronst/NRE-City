@@ -2,8 +2,8 @@
 
 import os
 
-from ..data_processor import JsonManager
-from . import EventSelector
+from ..data_manager import DataManager
+from .event_selector import EventSelector
 
 
 class EventProcessor:
@@ -15,5 +15,8 @@ class EventProcessor:
         if not path:
             raise ValueError("DATA_PATH environment variable is not set")
 
-        self.json_manager = JsonManager(path + "events.json")
-        self.selector = EventSelector(reset)
+        data_manager = DataManager()
+        data_manager.create_manager(path + "events.json")
+        data_manager.create_manager(path + "curr_event.json")
+        data_manager.create_manager(path + "event_frequency.json")
+        self.selector = EventSelector(data_manager)
