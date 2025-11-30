@@ -1,10 +1,11 @@
 """This module contains the DataManager class."""
 
+from ..helpers import SingletonMeta
 from .json_manager import JsonManager
 
 
-class DataManager:
-    """Manages multiples json.
+class DataManager(metaclass=SingletonMeta):
+    """Manages multiples json. Singleton.
 
     Allows to access multiple JsonManagers.
 
@@ -14,6 +15,10 @@ class DataManager:
 
     def __init__(self, json_managers: list[JsonManager] | None = None) -> None:
         """Init."""
+        self(json_managers)
+
+    def __call__(self, json_managers: list[JsonManager] | None = None) -> None:
+        """Adds content of passed lists to known JsonManagers."""
         self.json_managers = {}
         if isinstance(json_managers, list):
             for manager in json_managers:
