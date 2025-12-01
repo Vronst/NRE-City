@@ -73,7 +73,7 @@ class EventSelector:
 
         self.frequency_manager.save({"events": self.frequency})
 
-    def run(self) -> dict:
+    def run(self) -> str:
         """Run the event selector.
 
         Selector will select events that are not too
@@ -84,7 +84,7 @@ class EventSelector:
         """
         weights = [1 / x for x in self.frequency.values()]
         events = list(self.frequency.keys())
-        selected_event: dict = random.choices(events, weights=weights, k=1)[0]
+        selected_event: str = random.choices(events, weights=weights, k=1)[0]
 
         self.curr_event_manager.save({"event_id": selected_event})
 

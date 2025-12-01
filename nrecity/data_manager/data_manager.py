@@ -53,10 +53,10 @@ class DataManager(metaclass=SingletonMeta):
         if name_of_manager in self.json_managers:
             return self.json_managers[name_of_manager]
         elif path:
-            return self.create_manager(name_of_manager)
+            return self.create_manager(path, name_of_manager)
         else:
             raise ValueError(
-                "No JsonManager found with name '{name_of_manager}'"
+                f"No JsonManager found with name '{name_of_manager}'"
             )
 
     def create_manager(
