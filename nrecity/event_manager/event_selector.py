@@ -73,11 +73,15 @@ class EventSelector:
 
         self.frequency_manager.save({"events": self.frequency})
 
-    def run(self) -> str:
+    def run(self, city: bool = True, player: bool = True) -> str:
         """Run the event selector.
 
         Selector will select events that are not too
         frequent and not too close in time to each other.
+
+        Args:
+            city (bool): Whether to consider city events.
+            player (bool): Whether to consider player events.
 
         Returns:
             dict: The selected event.
