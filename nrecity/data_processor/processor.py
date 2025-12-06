@@ -171,7 +171,9 @@ class CityProcessor:
         # it will be just temporary discount
         reg_price = city_comm["regular_price"]
         price = city_comm["price"]
-        city_comm["price"] = random.choice((reg_price, round(price * 0.7, 0)))
+        city_comm["price"] = int(
+            random.choice((reg_price, round(price * 0.7, 0)))
+        )
 
         if city_comm["price"] == 0:
             city_comm["price"] = 1

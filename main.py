@@ -29,8 +29,11 @@ if __name__ == "__main__":
     path = str(os.getenv("DATA_PATH"))
     manager = p.DataManager()
     manager.create_manager(path + "events.json")
+    manager.create_manager(path + "events_player.json")
     manager.create_manager(path + "event_frequency.json")
+    manager.create_manager(path + "event_frequency_player.json")
     manager.create_manager(path + "curr_event.json")
+    manager.create_manager(path + "curr_event_player.json")
     selector = p.EventSelector(manager)
 
     if len(sys.argv) == 1:

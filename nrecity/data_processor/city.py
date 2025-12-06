@@ -28,7 +28,7 @@ class City:
     name: str
     size: str
     factory: list[str]
-    fee: float
+    fee: int
     nr_of_conn: int
     commodities: dict[str, dict | None]
     missions: int

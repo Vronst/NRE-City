@@ -23,21 +23,27 @@ class EventProcessor:
         self.events_manager: JsonManager = self.data_manager.create_manager(
             self.path + "events.json"
         )
-        # needs to be sure its for this specific save
-        self.data_manager.create_manager(self.path + "curr_event.json")
-        self.data_manager.create_manager(self.path + "event_frequency.json")
-        # since cities can be edited in multiple places
-        # there is no need to be sure the manager
-        # is for this specific save
+        self._create_required_managers()
         self.city_manager = self.data_manager.get_manager(
             "miasta", self.path + "miasta.json"
         )
         self.cities = self.city_manager()
         self.selector = EventSelector(self.data_manager)
 
+    def _create_required_managers(self):
+        assert isinstance(self.path, str)
+        self.data_manager.create_manager(self.path + "curr_event.json")
+        self.data_manager.create_manager(self.path + "curr_event_player.json")
+        self.data_manager.create_manager(self.path + "event_frequency.json")
+        self.data_manager.create_manager(
+            self.path + "event_frequency_player.json"
+        )
+        self.data_manager.create_manager(self.path + "events_player.json")
+
     def select_event(self) -> dict:
         """Uses EventSelector to select an event."""
-        event: str = self.selector.run()
+        event: str = self.selector.run()["city_event"]
+        # event: str = self.selector.run()
 
         return self.events_manager.data["events"][event]
 
@@ -62,10 +68,6 @@ class EventProcessor:
         for field in fields:
             if isinstance(original, dict):
                 original[field] += alternation[field]
-
-    # def __get_cities(self):
-    #     cities = self.data_manager.get_manager("pre_event_miasta").data
-    #     return cities
 
     def temporary_effects_manager(
         self, selected_event: dict | None, stop: bool = False
@@ -108,14 +110,26 @@ class EventProcessor:
 
         # TODO: add other mods
 
-    def __set_event_to_none(self):
-        manager = self.data_manager.get_manager("curr_event")
+    def __set_event_to_none(self, target: str = "city"):
+        if target == "city":
+            manager = self.data_manager.get_manager("curr_event")
+        elif target == "player":
+            manager = self.data_manager.get_manager("curr_event_player")
+        else:
+            return
+
         manager.save({"event_id": None})
+
+    def _random_player_event(self): ...
 
     def run(self):
         """Run the event processor."""
         if random.randint(1, 100) > self.event_chance:
-            self.__set_event_to_none()
+            self.__set_event_to_none("player")
+        else:
+            self._random_player_event()
+        if random.randint(1, 100) > self.event_chance:
+            self.__set_event_to_none("city")
             return
 
         self._process_event()
