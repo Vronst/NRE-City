@@ -106,7 +106,7 @@ class EventProcessor:
 
         self.cities["after"] = self.cities["cities"]
         self.city_manager.save(self.cities)
-        print(self.cities["cities"][0]["commodities"])
+        # print(self.cities["cities"][0]["commodities"])
 
         # TODO: add other mods
 
