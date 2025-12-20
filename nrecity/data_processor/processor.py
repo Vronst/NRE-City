@@ -48,9 +48,7 @@ class CityProcessor:
             list[City]: list containing City objects.
         """
         requested: list = (
-            self.__get_cities_after()
-            if state == "after"
-            else self.__get_cities_before()
+            self.__get_cities_after() if state == "after" else self.__get_cities_before()
         )
         city_dict: dict[str, City] = {}
         for city in requested:
@@ -73,9 +71,7 @@ class CityProcessor:
         result: dict = {}
 
         for name, city in before.items():
-            result[name] = commodieties_diff(
-                city.commodities, after[name].commodities
-            )
+            result[name] = commodieties_diff(city.commodities, after[name].commodities)
 
         return result
 
@@ -116,9 +112,7 @@ class CityProcessor:
 
                 self.__proces_quantity(city_comm, quantity, name, item_type)
 
-                change: int = round(
-                    self.__process_price(city_comm, quantity), 0
-                )
+                change: int = round(self.__process_price(city_comm, quantity), 0)
 
                 increase += change
 
@@ -171,9 +165,7 @@ class CityProcessor:
         # it will be just temporary discount
         reg_price = city_comm["regular_price"]
         price = city_comm["price"]
-        city_comm["price"] = int(
-            random.choice((reg_price, round(price * 0.7, 0)))
-        )
+        city_comm["price"] = int(random.choice((reg_price, round(price * 0.7, 0))))
 
         if city_comm["price"] == 0:
             city_comm["price"] = 1

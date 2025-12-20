@@ -59,9 +59,7 @@ class EventSelector:
 
     def _load_frequency(self):
         self.city_event_frequency = self.frequency_manager.data["events"]
-        self.player_event_frequency = self.frequency_player_manager.data[
-            "events"
-        ]
+        self.player_event_frequency = self.frequency_player_manager.data["events"]
         self.__set_frequency("city")
         self.__set_frequency("player")
 
@@ -114,9 +112,7 @@ class EventSelector:
     def __reset(self, target: str = "city") -> None:
         events = self.p_events if target != "city" else self.events
         frequency = (
-            self.player_event_frequency
-            if target == "city"
-            else self.city_event_frequency
+            self.player_event_frequency if target == "city" else self.city_event_frequency
         )
 
         for event in events:

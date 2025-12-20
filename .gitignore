@@ -1,2 +1,8 @@
 __pycache__
 nre_city.egg-info
+.zed/
+.idea/
+.venv/
+.vscode/
+.ruff_cache/
+.pytest_cache/

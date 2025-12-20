@@ -51,9 +51,7 @@ class CommoditiesManipulator:
                     case "factory":
                         factories: set = set()
                         for _ in range(*range_from_rules):
-                            factories.add(
-                                random.choice(list(factory.values()))
-                            )
+                            factories.add(random.choice(list(factory.values())))
                         city[field] = list(factories)
                     case "commodities":
                         # TODO: Check if its better to have reg and normal same
@@ -65,14 +63,14 @@ class CommoditiesManipulator:
                             city[field][commodity]["price"] = random.randint(
                                 *comm_range["price_range"]
                             )
-                            city[field][commodity]["regular_price"] = (
-                                random.randint(*comm_range["price_range"])
+                            city[field][commodity]["regular_price"] = random.randint(
+                                *comm_range["price_range"]
                             )
-                            city[field][commodity]["quantity"] = (
-                                random.randint(*comm_range["quantity_range"])
+                            city[field][commodity]["quantity"] = random.randint(
+                                *comm_range["quantity_range"]
                             )
-                            city[field][commodity]["regular_quantity"] = (
-                                random.randint(*comm_range["quantity_range"])
+                            city[field][commodity]["regular_quantity"] = random.randint(
+                                *comm_range["quantity_range"]
                             )
                     case _:
                         city[field] = random.randint(*range_from_rules)

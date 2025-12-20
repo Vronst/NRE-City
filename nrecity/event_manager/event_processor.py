@@ -35,9 +35,7 @@ class EventProcessor:
         self.data_manager.create_manager(self.path + "curr_event.json")
         self.data_manager.create_manager(self.path + "curr_event_player.json")
         self.data_manager.create_manager(self.path + "event_frequency.json")
-        self.data_manager.create_manager(
-            self.path + "event_frequency_player.json"
-        )
+        self.data_manager.create_manager(self.path + "event_frequency_player.json")
         self.data_manager.create_manager(self.path + "events_player.json")
 
     def select_event(self) -> dict:
